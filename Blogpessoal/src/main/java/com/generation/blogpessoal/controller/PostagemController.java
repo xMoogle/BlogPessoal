@@ -60,7 +60,7 @@ public class PostagemController
   }
   @GetMapping("/produto={keyword}")
 	public ResponseEntity<List<Postagem>> getByTema(@PathVariable String keyword){
-		return ResponseEntity.ok(repository.findAllByPostagemContainingIgnoreCase(keyword));
+		return ResponseEntity.ok(repository.findAllByTextoContainingIgnoreCase(keyword));
   }
   @DeleteMapping("/{id}")
 	void delete(@PathVariable Long id)
