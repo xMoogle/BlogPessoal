@@ -6,22 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.repository.UsuarioRepository;
 
-
-public class UserDetailsServiceImpl implements UserDetailsService
-{
- @Autowired
- private UsuarioRepository userRepository;
- 
-@Override
- public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException
- {
-	Optional<Usuario> user = userRepository.findByUsuario(userName);
-	user.orElseThrow(() -> new UsernameNotFoundException(userName + "not found."));
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
 	
-	return user.map(UserDetailsImpl::new).get();
- }
+	@Autowired
+	private UsuarioRepository repository;
+
+	@Override
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+
+		Optional<Usuario> usuario = repository.findByUsuario(userName);
+		usuario.orElseThrow(() -> new UsernameNotFoundException(userName + " nÃ£o encontrado."));
+
+		return usuario.map(UserDetailsImpl::new).get();
+	}
 }
