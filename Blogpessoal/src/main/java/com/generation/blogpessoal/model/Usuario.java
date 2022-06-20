@@ -46,8 +46,6 @@ public class Usuario {
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem> postagem;
 	
-	
-
 	public Usuario(long id, String nome, String foto, String usuario, String senha) {
 		this.id = id;
 		this.nome = nome;
@@ -55,6 +53,8 @@ public class Usuario {
 		this.usuario = usuario;
 		this.senha = senha;
 	}
+	
+	public Usuario(){}
 
 	/* Insira os Getters and Setters */
 	public Long getId() {
